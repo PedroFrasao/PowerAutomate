@@ -1,2 +1,2 @@
 # PowerAutomate
-exemple of create a flow in Power automate
+example of create a flow in Power automate
