@@ -3,13 +3,13 @@ replace(
     outputs('GetFileContent')?['body'],
     '{{NUMERO_RNC}}',
     concat(
-      string(triggerOutputs()?['body/N_x00fa_mero_x002e_RNC_x003a_']),
+      string(triggerOutputs()?['body/...']),
       '  ',
-      formatDateTime(triggerOutputs()?['body/Data_x0020_Cria_x00e7__x00e3_o'], 'MM'),
+      formatDateTime(triggerOutputs()?['body/...'], 'MM'),
       '  ',
-      formatDateTime(triggerOutputs()?['body/Data_x0020_Cria_x00e7__x00e3_o'], 'yyyy')
+      formatDateTime(triggerOutputs()?['body/...'], 'yyyy')
     )
   ),
   '{{DATA_RNC}}',
-  formatDateTime(triggerOutputs()?['body/Data_x0020_Cria_x00e7__x00e3_o'], 'dd/MM/yyyy')
+  formatDateTime(triggerOutputs()?['body/...'], 'dd/MM/yyyy')
 )
