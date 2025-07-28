@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Não Conformidade (RNC)</title>
+    <style>
+    @page {size: A4; margin: 1.5cm;}
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        line-height: 1.4;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 10pt;
+    }
+    .form-container {
+        width: 100%;
+        max-width: 21cm;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    /* Header com logo no canto esquerdo */
+    .header {
+        margin-bottom: 15px;
+        border-bottom: 1px solid #000;
+        padding-bottom: 10px;
+        position: relative;
+        min-height: 70px;
+    }
+    .logo-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        max-width: 150px;
+        text-align: right;
+    }
+    .logo {
+        max-width: 100%;
+        height: auto;
+        max-height: 60px;
+        object-fit: contain;
+        padding-top: 50px;
+    }
+    .header-content {
+        margin-left: 160px; /* Espaço para a logo */
+        text-align: center;
+        padding-top: 50px;
+    }
+    .header h2 {
+        margin: 5px 0;
+        color: #000;
+    }
+
+    .section {
+        margin-bottom: 15px;
+        page-break-inside: avoid;
+    }
+    .section-title {
+        background-color: #0093D0;
+        padding: 5px 8px;
+        font-weight: bold;
+        margin: -8px -8px 8px -8px;
+        border-bottom: 1px solid #ddd;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 10px;
+        font-size: 9pt;
+        border: 2px solid blue;
+    }
+    table, th, td {
+        border: 1px solid blue;
+    }
+    th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+        text-align: left;
+        padding: 5px;
+    }
+    td {
+        padding: 5px;
+        vertical-align: top;
+    }
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    .info-item {
+        margin-bottom: 5px;
+    }
+    .deslocar {
+        margin-left: 200px; 
+    }
+    .info-label {
+        font-weight: bold;
+        display: inline-block;
+        min-width: 120px;
+    }
+    .checkbox-list {
+        margin: 5px 0;
+        padding-left: 20px;
+    }
+    .checkbox-item {
+        margin-bottom: 3px;
+    }
+    .text-area {
+        margin-top: 5px;
+        padding: 5px;
+        border: 1px solid blue;
+        border-radius: 3px;
+        background-color: #f9f9f9;
+        min-height: 50px;
+    }
+    .signature-area {
+        margin-top: 20px;
+        border-top: 1px dashed blue;
+        padding-top: 10px;
+        width: 60%;
+    }
+    .footer {
+        text-align: center;
+        font-size: 8pt;
+        color: #666;
+        margin-top: 15px;
+        border-top: 1px solid blue;
+        padding-top: 5px;
+    }
+
+    @media print {
+        body {font-size: 9pt;} 
+        .section {margin-bottom: 10pt;}
+        .logo {
+            max-height: 50px !important;
+            max-width: 120px !important;
+        }
+        @page :not(:first) {
+            .logo-container {display: none;}
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="header">
+            <div class="header-content">
+                <h2>RELATÓRIO DE NÃO CONFORMIDADE</h2>
+                <div class="info-grid">
+                    <div class="info-item deslocar">
+                        <span class="info-label">Data:</span> {{DATA_RNC}}
+                    </div>
+                    <div class="info-item deslocar">
+                        <span class="info-label">Nº:</span> {{NUMERO_RNC}}
+                    </div>
+                </div>
+            </div>
+            <div class="logo-container">
+                <img class="logo" src="data:image/png;base64,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" alt="Logo da Empresa">
+            </div>
+        </div>
+
+
+       
+        <!-- SEÇÃO IDENTIFICAÇÃO -->
+        <div class="section">
+            <div class="section-title">IDENTIFICAÇÃO</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Emitente:</span> {{EMITENTE}}
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Área:</span> {{AREA}}
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Envolvidos:</span> {{ENVOLVIDOS}}
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Código item:</span> {{CODIGO_ITEM}}
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Descrição:</span> {{DESCRICAO_ITEM}}
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Quant.:</span> {{QUANTIDADE}}
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Cliente/Forn:</span> {{CLIENTE_FORNECEDOR}}
+                </div>
+                <div class="info-item">
+                    <span class="info-label">O. Compra:</span> {{ORDEM_COMPRA}}
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Nº NF:</span> {{NOTA_FISCAL}}
+                </div>
+            </div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Reincidência:</span>   
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Nº da RNC:</span> 
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tipo:</span> 
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DETALHAMENTO -->
+        <div class="section">
+            <div class="section-title">DETALHAMENTO DA NÃO CONFORMIDADE</div>
+            <div class="info-item">
+                <span class="info-label">Origem:</span>
+                <div class="checkbox-list">
+                    
+                </div>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Descrição da Não Conformidade:</span>
+                <div class="text-area">{{DESCRICAO_NC}}</div>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Ação de Correção:</span>
+                <div class="checkbox-list">
+                    
+
+
+
+
+
+                </div>
+            </div>
+            <table>
+                <tr><th width="10%">Número  {{Número}}</th><th width="50%">Ação realizada imediatamente</th><th width="20%">Data {{Data_Data}}</th><th width="20%">Responsável  {{Responsavel}}</th></tr>
+                
+
+
+                
+            </table>
+            <div class="info-item">
+                <span class="info-label">Abrangência:</span>
+                <div class="text-area"> </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO CAUSA RAIZ -->
+        <div class="section">
+            <div class="section-title">ANÁLISE DE CAUSAS RAIZ</div>
+            <div class="info-item">
+                <span class="info-label">Análise de Causas Potenciais:</span>
+                <!-- <div class="text-area">{{CAUSA_RAIZ}}</div> -->
+            </div>
+            <table>
+                <tr><th width="30%">Área</th><th width="70%">Descrição</th></tr>
+                <tr><td>No método (ou processo)</td><td>{{CAUSA_METODO}}</td></tr>
+                <tr><td>No material utilizado</td><td>{{CAUSA_MATERIAL}}</td></tr>
+                <tr><td>Com a mão de obra</td><td>{{CAUSA_MAO_DE_OBRA}}</td></tr>
+                <tr><td>Nas máquinas/ferramentas</td><td>{{CAUSA_MAQUINAS}}</td></tr>
+                <tr><td>Nas medições</td><td>{{CAUSA_MEDICOES}}</td></tr>
+                <tr><td>No ambiente de trabalho</td><td>{{CAUSA_AMBIENTE}}</td></tr>
+            </table>
+
+        <!-- SEÇÃO 5 PORQUÊS -->
+        <div class="section">
+            <div class="section-title">ANÁLISE DE CAUSA RAIZ (5 PORQUÊS)</div>
+            <table>
+                <tr><th width="15%"></th><th width="42.5%">Causa Potencial 1</th><th width="42.5%">Causa Potencial 2</th></tr>
+                <tr><td><strong>1º Por quê?</strong></td><td> </td><td> </td></tr>
+                <tr><td><em>Resposta</em></td><td> </td><td> </td></tr>
+                <tr><td><strong>2º Por quê?</strong></td><td> </td><td> </td></tr>
+                <tr><td><em>Resposta</em></td><td> </td><td> </td></tr>
+                <tr><td><strong>3º Por quê?</strong></td><td> </td><td> </td></tr>
+                <tr><td><em>Resposta</em></td><td> </td><td> </td></tr>
+                <tr><td><strong>4º Por quê?</strong></td><td> </td><td> </td></tr>
+                <tr><td><em>Resposta</em></td><td> </td><td> </td></tr>
+                <tr><td><strong>5º Por quê?</strong></td><td> </td><td> </td></tr>
+                <tr><td><em>Resposta</em></td><td> </td><td> </td></tr>
+            </table>
+        </div>
+
+        <!-- SEÇÃO PLANO DE AÇÃO -->
+        <div class="section">
+            <div class="section-title">PLANO DE AÇÃO E EFICÁCIA</div>
+            <table>
+                <tr><th width="5%">#</th><th width="45%">Ações Corretivas</th><th width="20%">Responsável</th><th width="15%">Data Limite</th><th width="15%">Status</th></tr>
+                {{ACAO_CORRETIVA_1}}
+                {{ACAO_CORRETIVA_2}}
+                {{ACAO_CORRETIVA_3}}
+            </table>
+            <div class="info-item" style="margin-top: 15px;">
+                <span class="info-label">Verificação da Eficácia:</span>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Responsável:</span> {{VERIFICADOR_EFICACIA}}
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Data:</span> {{DATA_VERIFICACAO}}
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Resultado:</span> {{EFICAZ}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RODAPÉ -->
+        <div class="footer">
+            <p>Documento gerado automaticamente em {{DATA_GERACAO}}</p>
+            <p>Revisão: 03 | Data: 03/10/2024</p>
+        </div>
+    </div>
+</body>
+</html>
