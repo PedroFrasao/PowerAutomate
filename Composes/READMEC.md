@@ -12,5 +12,4 @@ Example:
 
 ```html
 <p>Hello, {{UserName}}!</p>
-
-If the Compose contains a value for UserName, it will be replaced accordingly in the final HTML output.
+      If the Compose contains a value for UserName, it will be replaced accordingly in the final HTML output.
