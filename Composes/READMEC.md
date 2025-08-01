@@ -1,5 +1,9 @@
-# Relação entre os Composes e a estrutura do HTML:
+#Realtionship between "Composes" and "HTML":
 
--Cada Compose serve para substituir dados em uma parte especifica do html usando "PlaceHolds"(palavras entre chaves {{...}} ).
+Each Compose has a function to data substiction on a spcify part of html using "PlaceHolds" (words in {{...}} )
 
-### -Caso queira mudar o nome de uma coluna da lista do sharepoint(que esteja sendo usada para gerar o relátorio), você terá que mudar o nome interno dessa coluna que estará em um dos composes e mudará o que estiver entre chaves "{{...}}" !!!
+### -Case you want to chage a column name of Sharepoint list(that was used in Report) you will have that chage the intern column name that will be on a one of the composes and will change whatever is in "{{...}}". 
+
+
+
+
