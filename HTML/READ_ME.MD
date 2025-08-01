@@ -1,4 +1,6 @@
-#Relação entre os Composes e a estrutura do HTML:
+#Realtionship between "Composes" and "HTML":
 
-Cada Compose serve para substituir dados em um parte especifica do html usando "PlaceHolds"(palavras entre chaves {{...}} ).
+Each Compose has a function to data substiction on a spcify part of html using "PlaceHolds" (words in {{...}} )
+
+
 
