@@ -1,9 +1,6 @@
-#Realtionship between "Composes" and "HTML":
+Relationship between "Composes" and "HTML":
+Each Compose is responsible for replacing data in a specific part of the HTML using Placeholders (words inside {{...}}).
 
-Each Compose has a function to data substiction on a spcify part of html using "PlaceHolds" (words in {{...}} )
-
-### -Case you want to chage a column name of Sharepoint list(that was used in Report) you will have that chage the intern column name that will be on a one of the composes and will change whatever is in "{{...}}". 
-
-
+If you want to change the name of a column in a SharePoint list (used in the report), you'll need to update the internal column name. This internal name is used in one of the Compose actions and will automatically replace the corresponding value inside {{...}}.
 
 
